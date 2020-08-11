@@ -90,3 +90,44 @@ URL：http://host:port/api/v1/ts/ofd/ofdConvertImage
 	"message": "成功"
 }
 ```
+
+### OFD发票版式文件数据合成
+
+
+URL：http://host:port/api/v1/ts/ofd/ofdGenerate
+请求方式：POST
+
+报文格式：Content-Type: application/json
+
+请求参数：
+
+| 参数        | 说明                                                         | 类型    | 是否必填 |
+| ----------- | ------------------------------------------------------------ | ------- | -------- |
+| xmlData     | 安全代理返回的发票数据xml，注意需要去掉所有换行              | String  | 是       |
+
+请求参数示例：
+
+```json
+{
+
+    "xmlData":"<?xml version=\"1.0\" encoding=\"gbk\"?><business id=\"93001\" comment=\"发票开具\"><body><fwqdz>/fwqdz>..."
+}
+```
+
+返回数据：
+
+| 数据    | 说明                                                   |
+| ------- | ------------------------------------------------------ |
+| code    | 返回码。"0"表示成功，其余表示失败，失败原因参考message |
+| message | 请求结果信息                                           |
+| data    | 签署后的OFD发票版式文件，BASE64编码的字符串            |
+
+返回数据示例：
+
+```json
+{
+	"code": "0",
+	"data": "xxx",
+	"message": "成功"
+}
+```
